@@ -1,76 +1,100 @@
-# Desafio Back End Java na DoroTech 
+# Desafio Back End Java na DoroTech
 
-Somos uma empresa com clientes que atuam em vários segmentos do mercado, com diferentes tecnologias, culturas e desafios.
+REST API MongoDB java test
 
-Gostamos de compor nossos times com profissionais multidisciplinares, que tenham alta capacidade de aprendizado, sejam detalhistas, resilientes, questionadores e curiosos. Você, como Java Developer, será o responsável por implementar, dar manutenção, aplicar correções e propor soluções em projetos de software.
+El siguiente proyecto Maven responde a un API de servicios rest para el manejo de una coleccion de productos.
 
-## Requisitos do desafio:
-```
-1. Criar um código que execute um CRUD(Create, Read, Update, Delete) em uma tabela para gerenciar produtos eletrônicos.
-2. Use um banco NoSQL(DynamoDB é um diferencial).
-3. Utilizar Spring como framework(Quarkus é um diferencial).
-4. Dados da tabela a ser criada no banco:
-    - Products:
-        name,
-        description,
-        price,
-        amount.
+Lenguaje de programacion: Java Version 17 Manejador de base de datos NoSql MongoDB Framework Springframework
 
+## Build
 
-Seja criativo! fazer o melhor não é ser complexo.
-``` 
+mvn clean install
 
-## Dicas e Informações Valiosas
-```
-O que gostaríamos de ver em seu teste:
-    
-    Convenção de nome em classes, objetos, variáveis, métodos e etc.
-    Faça commits regulares. Eles são melhores do que um commit gigantesco. Gostaríamos de ver commits organizados e padronizados, então capriche neles!
-    Bônus 1 Quarkus & AWS, implementação de uma lambda AWS utilizando framework Quarkus
-    Bônus 2 Testes automatizados
-    Observação: Nenhum dos itens acima é obrigatório.
+## Run the app
 
-O que o seu Teste não deve ter:
-    Saber que não foi você quem implementou o projeto.
-    Várias bibliotecas instaladas sem uso.
-    Falta de organização de código.
-    Falta de documentação.
-    Nome de variáveis sem sentido ou sem padrão de nomes.
-    Histórico de commits desorganizado e despadronizado.
+Correr la clase main Application.java
 
-Boa Sorte!!
-```
+## REST API
 
-## Itens obrigatórios
-```
-1. Possibilitar a criação de um novo produto
-2. Possibilitar consulta de todos os produtos no banco de dados.
-3. Possibilitar consultar um produto específico pelo id.
-4. Permitir a exclusão de um produto.
-5. Persistir os dados na base.
-```
+### Obtener lista de todos los productos
 
-## Itens desejáveis
-```
-1. Criação de Testes unitários.
-2. Utilização de alguma ferramenta AWS(API Gateway, Lambda, SQS, SNS, EC2,..).
-3. Docker.
-4. Utilização de algum padrão de projeto.
-```
+Request
 
-### Instruções para entrega
-```
-1. Fazer um fork desse repositório
+GET /products
 
-2. Criar um branch com o seu primeiro e último nome
-git checkout -b joao-silva
+Response
 
-3. Escreva a documentação da sua aplicação
-Você deve, substituir o conteúdo do arquivo README.md e escrever a documentação da sua aplicação, com os seguintes tópicos:
-    - Projeto: Descreva o projeto e como você o executou. Seja objetivo.
-    - Tecnologias: Descreva quais tecnologias foram utilizadas, enumerando versões (se necessário) e os links para suas documentações, quais bibliotecas instalou e porque.
-Como compilar e rodar: Descreva como compilar e rodar sua aplicação.
+Date: Wed, 22 Mar 2023 18:50:38 GMT Status: 200 OK Content-Type: application/json
 
-4. Faça uma Pull Request
-Após implementada a solução, crie uma pull request com o seu projeto para esse repositório, avise o recrutador.
-```
+[
+    {
+        "_id": "641a551061fa46a03dc066fb",
+        "name": "Producto_prueba",
+        "description": "Producto de prueba ap",
+        "price": 30.5,
+        "amount": 10 
+    }, 
+    {
+        "_id": "641b2c5cef2db43fec2ac34f",
+        "name": "Producto_prueba_postman",
+        "description": "Producto de prueba postman",
+        "price": 100.0,
+        "amount": 5 
+    }
+]
+
+### Crear un nuevo producto
+
+Request
+
+POST /products
+
+Body
+
+{
+    "name": "Producto_prueba",
+    "description": "Producto de prueba ap",
+    "price": 30.5,
+    "amount": 10
+}
+
+Response
+
+Date: Wed, 22 Mar 2023 18:55:09 GMT Status: 200 OK Content-Type: application/json
+
+{
+    "_id": "641b4f0d7e64ed4523347c97",
+    "name": "Producto_prueba",
+    "description": "Producto de prueba ap",
+    "price": 30.5,
+    "amount": 10
+}
+
+### Obtener un producto por ID
+
+Request
+
+GET /products/641b4f0d7e64ed4523347c97
+
+Response
+
+Date: Wed, 22 Mar 2023 18:59:09 GMT Status: 200 OK Content-Type: application/json
+
+{
+    "_id": "641b4f0d7e64ed4523347c97",
+    "name": "Producto_prueba",
+    "description": "Producto de prueba ap",
+    "price": 30.5,
+    "amount": 10
+}
+
+### Eliminar un producto en particular
+
+Request
+
+DELETE /products/641b4f0d7e64ed4523347c97
+
+Response
+
+Date: Wed, 22 Mar 2023 19:02:17 GMT Status: 200 OK Content-Type: application/json
+
